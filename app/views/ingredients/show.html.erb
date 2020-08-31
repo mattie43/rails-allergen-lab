@@ -1,3 +1,7 @@
 <h1><%= @ingredient.name %></h1>
-
-<%= @ingredient.recipe.name %>
+Found in:
+<ul>
+<% @ingredient.recipes.each do |r| %>
+<li><%= link_to r.name, recipe_path(r) %></li><br>
+<% end %>
+</ul>

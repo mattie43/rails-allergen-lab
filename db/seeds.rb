@@ -8,19 +8,17 @@
 User.destroy_all
 Ingredient.destroy_all
 Recipe.destroy_all
-# RecipesIngredient.destroy_all
+IngredientsRecipe.destroy_all
 
-a = User.create(name: "John")
-b = User.create(name: "Matt")
-r1 = Recipe.create(name: "Pie", user: a)
-r2 = Recipe.create(name: "Soup", user: b)
-i1 = Ingredient.create(name: "salt", allergy_count: 2, recipe: r1)
-i2 = Ingredient.create(name: "pepper", allergy_count: 5, recipe: r1)
-i3 = Ingredient.create(name: "oregano", allergy_count: 1, recipe: r2)
-i4 = Ingredient.create(name: "cinnamon", allergy_count: 2, recipe: r2)
-# RecipesIngredient.create(recipe: r1, ingredient: i1)
-# RecipesIngredient.create(recipe: r1, ingredient: i2)
-# RecipesIngredient.create(recipe: r1, ingredient: i3)
-# RecipesIngredient.create(recipe: r2, ingredient: i1)
-# RecipesIngredient.create(recipe: r2, ingredient: i2)
-# RecipesIngredient.create(recipe: r2, ingredient: i4)
+3.times { User.create(name: Faker::Name.first_name) }
+5.times do
+    Recipe.create(name: Faker::Food.dish, user: User.all.sample)
+end
+50.times do
+    Ingredient.create(name: Faker::Food.ingredient, allergy_count: rand(3))
+end
+20.times { IngredientsRecipe.create(recipe: Recipe.first, ingredient: Ingredient.all.sample) }
+20.times { IngredientsRecipe.create(recipe: Recipe.second, ingredient: Ingredient.all.sample) }
+20.times { IngredientsRecipe.create(recipe: Recipe.third, ingredient: Ingredient.all.sample) }
+20.times { IngredientsRecipe.create(recipe: Recipe.fourth, ingredient: Ingredient.all.sample) }
+20.times { IngredientsRecipe.create(recipe: Recipe.fifth, ingredient: Ingredient.all.sample) }
