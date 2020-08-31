@@ -1,0 +1,7 @@
+<h1>Ingredient List</h1>
+<ul>
+<% @ingredients.each do |i| %>
+<li><%= link_to i.name, ingredient_path(i) %><br>
+# of allergies: <%= i.allergy_count %></li><br>
+<% end %>
+</ul>
